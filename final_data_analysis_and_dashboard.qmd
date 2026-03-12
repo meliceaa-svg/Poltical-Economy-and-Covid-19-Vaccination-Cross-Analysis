@@ -1,0 +1,357 @@
+---
+title: "Poltical Covid-19 Vaccination Analysis"
+author: Sara Sotelo, Melissa Reyes
+format:
+  dashboard: 
+    theme: united
+    fontcolor: black
+    embed-resources: true
+editor: visual
+---
+
+# Overview
+
+```{r}
+library(ggplot2)
+```
+
+<h1>1.1: Providing Topical Overview</h1>
+
+<h2>Data Used</h2>
+
+<p>Many countries have stable GDP’s and so the expectation is that their vaccination rates will be similar to those with similar GDP’s however that’s not always the case. The political data we selected is from Our World In Data, which makes the dataset less biased than something that was recorded by an individual country. We think it’s important to shed some light on different factors that may affect health efforts within a country. The Covid data we selected has the worldwide vaccination progress from 2020 to 2022, during the peak of Covid-19 time. <br></br> <b>To answer our proposed questions below, we had merged the political and covid-19 data together:</b></p>
+
+<b><a href="https://ourworldindata.org/grapher/gdp-per-capita-vs-electoral-democracy-index?tab=table&overlay=download-data">Link to Poltical Data</a></b>
+
+<b><a href="https://www.kaggle.com/datasets/gpreda/covid-world-vaccination-progress?resource=download">Link to COVID-19 Data</a></b>
+
+<h2 style="font-weight: bold;">
+
+What is the correlation between the democracy index per country and vaccination rates? Is it significant?
+
+</h2>
+
+<a href="https://brill.com/display/book/9789004692671/BP000014.xml"> Global Geopolitics of Vaccine Distribution link</a>
+
+<p>Background:</p>
+
+<p>The background behind this question, from the COVID-19 “Humanitarianism” book, got us wondering if there was a possibility that the vaccine distribution would align with how vaccine distributions from global powers to developing countries, with the geopolitical relations of vaccine distributions, correspond to their democracy index. This is a thought-provoking question because it really shows how a country's relationship to this might affect the quality of its response and cooperation during a global emergency. Some of the questions we had to ask ourselves while using the dataset were if these datasets may have safety and security risks, because of how they are processed and handled by multiple people, meaning the data may either be compromised or peer-reviewed to be safe.</p>
+
+<img src="https://www.amprogress.org/wp-content/uploads/2020/03/Microbes-1-800x450.jpg" alt="Photo of COVID-19 virus up close" height="250px" width="400px"/> <br> <br>
+
+<h2 style="font-weight: bold;">
+
+Are there any outliers in countries with a low democracy index and a high democracy index? If we isolate certain variables within the outliers, can we find anything in common with their opposite group?
+
+</h2>
+
+<a href="https://www.ejeph.com/download/geopolitical-aspects-of-covid-19-vaccines-distribution-12779.pdf"> Geopolitical aspects of COVID-19 vaccines distribution link</a>
+
+<p>Background:</p>
+
+<p>For this second question, the background behind it was curiosity about the country's political standing and how a country's democracy index affected it, which came up while thinking about the project. Soon, that conversation led to a Google search, and we found a study about whether the vaccine distribution aligns with the geopolitical status quo, and that they are looking at regions that may be more likely to cause geopolitical turmoil; however, the two goals are not combined, but rather separate. We found it most compelling since it was very recent with the times, and seeing potential outliers can help us see patterns of countries that we didn’t see or know before that could be potentially useful information. Now, something we had to consider was that we found out that the datasets are not explicitly discriminatory, and gaps in the data collection may cause unfairness in representation.</p>
+
+<img src="https://www.inquirer.com/resizer/qVude9teSZDSjSLsbNfllRCuwzY=/arc-anglerfish-arc2-prod-pmn/public/BLQ77EK3Z5E4TKJXFR2NNBGTGE.jpg" alt="Photo of Political Cartoon: Coronavirus, America&apos;s path to bipartisanship?" height="250px" width="400px"/> <br> <br>
+
+<h2 style="font-weight: bold;">
+
+What is the correlation between GDP per capita and vaccination rates? Is it more, less, or about the same in terms of significance compared to the democracy index?
+
+</h2>
+
+<a href="https://globalchallenges.ch/issue/special_1/the-vaccine-race-will-public-health-prevail-over-geopolitics/%20Global%20Challenges">Global Challenges Link</a>
+
+<p>Background:</p>
+
+<p>The background of our final question was that, while conducting research for our project, we came across an article by Global Challenges that examined the distribution of vaccines from global powers to developing nations. The article also discussed the potential advantages of vaccine distribution for a global superpower in terms of influence and allyship. This got us thinking about what other types of power might be at leverage when it comes to countries and we thought GDP. Our thought process was, we wanted to see if there is a correlation between GDP per capita and vaccination rates, and if there was or wasn’t it would be something interesting to take into consideration. Especially to take into consideration for the future seeing how much it affected countries and how unprepared they were during COVID-19. As we were thinking about this question and how the data would work, an ethics question that popped into our mind was that within the report they state the process of the data collection for overview, signifying that they are considering the possibility that incorrect information may be harmful.</p>
+
+<img src="https://www.pharmaceutical-technology.com/wp-content/uploads/sites/24/2021/06/shutterstock_1913666929.jpg" alt="Photo of Covid-19 vaccinations" height="250px" width="400px"/> <br></br>
+
+<h1>1.2: Providing Data Context</h1>
+
+<h2>Dataset 1: Political</h2>
+
+<b><a href="https://ourworldindata.org/grapher/gdp-per-capita-vs-electoral-democracy-index?tab=table&overlay=download-data">Link to Poltical Data</a></b> <b>
+
+<p>Source:</p>
+
+</b> This dataset is from Our World in Data, it was sourced from several original data providers. Specifically, this dataset was made by Jutta Bolt and Jan Luiten van Zanden through the Maddison Data Project with minor processing by Our World in Data. This source is reliable because the data processing pipeline was posted for anyone to review.
+
+<b>
+
+<p>Description of sample of the dataset:</p>
+
+</b>
+
+<p>The dataset represents GDP per capita vs. Electoral Democracy Index globally. The GDP per capita is adjusted for inflation and differences in living costs between countries. This is compared to whether or not countries are most democratic using the democratic index, which is based on expert estimates, and ranges from 0 to 1 (most democratic). This is relevant to the content of our first dataset because it provides context to the political and economic state of the countries whose emergency health response we are studying.This dataset has 39,324 rows, with columns including GDP per capita, where GDP per capita is expressed in international-\$ at 2011 prices, and Electoral democracy index where countries are rated from 0-1, 1 being the most democratic. A shortcoming of this sample is many countries are missing GDP per capita data from the 1700s up until about the 1950s however, this doesn’t seem to impact the reliability of the data in a negative way. It seems more reliable to admit that the data is not available at certain times rather than making up the data. This also doesn’t affect our research because we are looking specifically at the COVID pandemic era 2020-2022, meaning we won’t struggle too much with missing data.</p>
+
+<h2>Dataset 2: Covid-19</h2>
+
+<b><a href="https://www.kaggle.com/datasets/gpreda/covid-world-vaccination-progress?resource=download">Link to COVID-19 Data</a></b> <b>
+
+<p>Source:</p>
+
+</b>
+
+<p>This source is from Kaggle, and it was sourced by Gabriel Preda. This source is reliable because Gabriel Preda has high-ranking achievements in Kaggle, along with educational credentials, indicating where and what they studied on their LinkedIn.</p>
+
+<b>
+
+<p>Description of sample of the dataset:</p>
+
+</b>
+
+<p>This data represents the worldwide vaccination progress from 2020 to 2022, during the peak of Covid-19 pandemic. The information that the dataset contains is relevant because we will be able to see what happened during global emergencies when it comes to resource allocation, interstate aid, and domestic response time to the vaccines. The people_vaccinated column shows the number of person will receive one or more (usually two) vaccines, depending on the immunization program, people_fully_vaccinated column shows the number of people who, in accordance with the vaccination scheme, received the full series of vaccinations (usually 2), and the daily_vaccination_per_million column in a ratio (in ppm) of the nation's current immunization rate to its total population. There are 86,512 rows.The benefit of the sample is that it has a great timeline since it cover before Covid-19(2020), during Covid-19(2021), and after Covid-19(2022). A shortcoming of this sample is that since it’s only a three year timeline we have a limitation on other datasets we can merge and different distributions we can look at.</p>
+
+### Loading Data
+
+```{r}
+covid_df <- read.csv("country_vaccinations.csv")
+pol_df <- read.csv("gdp-per-capita-vs-electoral-democracy-index.csv")
+```
+
+### Loading Libraries
+
+```{r}
+library(dplyr)
+library(stringr) # stringr was used in lecture 7
+library(tidyr)
+library(ggplot2)
+library(plotly)
+```
+
+### Cleaning Data columns
+
+```{r}
+filter_pol_df <- pol_df |>
+  select(Entity, Year, GDP.per.capita, Electoral.Democracy.Index)
+
+filter_covid_df <- covid_df |>
+  select(country, date, total_vaccinations, people_vaccinated, people_fully_vaccinated, daily_vaccinations_raw, daily_vaccinations, total_vaccinations_per_hundred, people_vaccinated_per_hundred, people_fully_vaccinated_per_hundred, daily_vaccinations_per_million)
+
+```
+
+### Joining Data
+
+```{r}
+
+new_covid_df <- filter_covid_df |>
+  mutate(year = as.integer(str_sub(date, end=4))) |>
+  group_by(country, year)|>
+  summarise(
+    total_vaccinations = mean(total_vaccinations, rm.na= TRUE),
+    people_vaccinated = mean(people_vaccinated, rm.na = TRUE),
+    people_fully_vaccinated = mean(people_fully_vaccinated, rm.na = TRUE),
+    daily_vaccinations_raw = mean(daily_vaccinations_raw, rm.na = TRUE),
+    daily_vaccinations = mean(daily_vaccinations, rm.na = TRUE),
+    total_vaccinations_per_hundred = mean(total_vaccinations_per_hundred, rm.na = TRUE),
+    people_vaccinated_per_hundred = mean(people_vaccinated_per_hundred, rm.na = TRUE),
+    people_fully_vaccinated_per_hundred = mean(people_fully_vaccinated_per_hundred, rm.na = TRUE),
+    daily_vaccinations_per_million = mean(daily_vaccinations_per_million, rm.na = TRUE) 
+  )
+
+pol_n_covid <- new_covid_df|>
+  inner_join(filter_pol_df, join_by(country == Entity, year == Year))
+
+```
+
+# Plot 1
+
+<h2 style="font-weight: bold;">
+
+What is the correlation between the democracy index per country and vaccination rates? Is it significant?
+
+</h2>
+
+```{r}
+var2 <- pol_n_covid |>
+  filter(year == 2021)
+
+var3 <- var2 |>
+  mutate(is_low_democracy_index = (Electoral.Democracy.Index < 0.5))
+
+plot2 <- ggplot(var3, aes(x = total_vaccinations, fill = is_low_democracy_index)) +
+  geom_boxplot() + 
+  labs(
+    x = "Total Vaccinations",
+    fill = "Has Low Democracy Index"
+  )
+
+plot2 + scale_color_manual(
+  labels = c("LOW", "HIGH")
+)
+```
+
+<p>Coding Notes:</p>
+<p>The correlation coefficient between a country's democracy index and total vaccinations is 0.13(rounded to two decimal places). This correlation is weak, and the side-by-side boxplot helps us visualize it. Both low and high democracy country groups have similar medians of total vaccinations used. However, the high democracy group has visible outlier countries in its spread.</p>
+
+# Plot 2
+
+<h2 style="font-weight: bold;">
+
+What are the statistics for total vaccinnations for countries with a low democracy index and a high democracy index? Are there any outliers in countries with a low democracy index and a high democracy index?
+
+</h2>
+
+```{r}
+test1 <- pol_n_covid |>
+  drop_na()
+
+test3_df <- test1 |>
+  group_by(Electoral.Democracy.Index >= 0.5) |>
+  summarize(
+    min_vac = min(total_vaccinations, na.rm = TRUE),
+    q1 = quantile(total_vaccinations, 0.25, na.rm = TRUE),
+    median_vac = median(total_vaccinations, na.rm = TRUE),
+    q3 = quantile(total_vaccinations, 0.75, na.rm = TRUE),
+    max_vac = max(total_vaccinations, na.rm = TRUE)
+  )
+test3_df
+
+
+low_q1 <- test3_df |>
+  filter(`Electoral.Democracy.Index >= 0.5` == FALSE) |> 
+  pull(q1) |>
+  unname()
+
+  
+low_q3 <- test3_df |>
+  filter(`Electoral.Democracy.Index >= 0.5` == FALSE) |> 
+  pull(q3) |>
+  unname()
+
+high_q1 <- test3_df |>
+  filter(`Electoral.Democracy.Index >= 0.5` == TRUE) |> 
+  pull(q1) |>
+  unname()
+
+  
+high_q3 <- test3_df |>
+  filter(`Electoral.Democracy.Index >= 0.5` == TRUE) |> 
+  pull(q3) |>
+  unname()
+
+low_iqr <- low_q3 - low_q1
+high_iqr <- high_q3 - high_q1
+
+low_lower_bound <- low_q1 - 1.5 * low_iqr
+low_upper_bound <- low_q3 + 1.5 * low_iqr
+
+high_lower_bound <- high_q1 - 1.5 * high_iqr
+high_upper_bound <- high_q3 + 1.5 * high_iqr
+
+high_outliers <- test1 |> 
+  filter(Electoral.Democracy.Index >= 0.5,
+         total_vaccinations > high_upper_bound |
+         total_vaccinations < high_lower_bound)
+
+
+high_plot <- ggplot(high_outliers,
+       aes(x = country,
+           y = total_vaccinations)) +
+  geom_point() +
+  labs(
+    title = "Outliers in High Democracy Countries (EDI ≥ 0.5)",
+    x = "Country",
+    y = "Total Vaccinations"
+  ) 
+
+ggplotly(high_plot)
+
+low_outliers <- test1 |> 
+  filter(Electoral.Democracy.Index < 0.5,
+         total_vaccinations > low_upper_bound |
+         total_vaccinations < low_lower_bound)
+
+low_plot <- ggplot(low_outliers,
+       aes(x = country,
+           y = total_vaccinations)) +
+  geom_point() +
+  labs(
+    title = "Outliers in Low Democracy Countries (EDI < 0.5)",
+    x = "Country",
+    y = "Total Vaccinations"
+  ) 
+  
+ggplotly(low_plot)
+
+```
+
+<p>Coding Notes:</p>
+<p>The printed graph shows a spread of summary statistics for total vaccinations of countries with low and high electoral democracy indices. These statistics, such as the upper and lower quartiles, help us identify and plot the outlier countries in the total vaccination data.</p>
+
+# Plot 3
+
+<h2 style="font-weight: bold;">
+
+What is the correlation between GDP per capita and vaccination rates? Is it more, less, or about the same in terms of significance compared to the democracy index?
+
+</h2>
+
+```{r}
+var <- pol_n_covid |>
+  filter(year == 2021) 
+
+plot1 <- ggplot(data = var, aes(x = GDP.per.capita , y =  total_vaccinations, colour = country)) +
+  geom_point() + 
+    labs(
+      title = "GDP Per Capita vs Vaccinations Rates Per Country",
+      x = "GDP Per Capita",
+      y = "Vaccination Rates"
+      ) + geom_smooth(method = "lm", se = FALSE, color = "blue")
+
+ggplotly(plot1)
+
+corr_coeff_GDP <- cor(var$GDP.per.capita, var$total_vaccinations, use = "pairwise.complete.obs")
+corr_coeff_dem <- cor(var$Electoral.Democracy.Index, var$total_vaccinations, use = "pairwise.complete.obs")
+```
+
+<p>Coding Notes: </p>
+
+<p>The correlation coefficient for the graph comparing GDP per Capita and total vaccinations in the year 2021 is 0.22 (rounded to two digits). The correlation coefficient for the comparison between the Electoral Democracy Index and total vaccinations in the year 2021 is 0.13 (rounded to two digits). Both coefficients are weak however the coefficient for the comparison between GDP per Capita and total vaccinations in the year 2021 is slightly larger.</p>
+
+# New Tools
+<h2 style="font-weight: bold;">Tools used that were not covered in class:</h2>
+<p>
+**fill:** Our goal was to plot two boxplots side by side of countries with low and high democracy index. To do this, we decided to use fill. Without it, we would have had to make two plots. However, this was the best way to compare them side by side.
+
+Our knowledge of this tool came from the STAT 311 course here at UW.
+
+**Quantile:** To gauge a better understanding of the spread of our data, we decided to calculate multiple statistical values using the summarize function and gather a meaningful conclusion from these values. We landed on using the quantiles to find any outliers in countries with low and high level electoral democracy index. Without this function, we would have to calculate the value manually and make no use of our summarize() function.
+
+After searching for which functions summarize() could support, we landed on quantile(). To use this function, we referenced the StackOverflow website.
+
+**use = "pairwise.complete.obs" for correlation coefficient:** We decided to calculate the correlation coefficient for the scatter plot that compares GDP to total vaccinations to investigate whether the correlation was statistically significant. Many of our rows had missing values scattered throughout the columns. Without this function, we would either have to sacrifice the rows with missing values or get an NA result when calculating the correlation coefficient. This function automatically ignores NA values when calculating the correlation coefficient.
+
+When researching the functionality of the correlation coefficient in R we came across use = "pairwise.complete.obs" in the R-bloggers website.
+
+**geom_smooth(method = "lm", se = FALSE, color = "blue"):** We wanted a way to visualize the correlation between GDP and total vaccinations on the visualization. Without this function, we would only have an empty scatter plot, and we would have to describe our intention rather than just showing our audience.
+
+Our knowledge of this tool came from the STAT 311 course here at UW.
+
+**\$ for var\$GDP.per.capita:** The correlation coefficient function does not have a specific way to insert the data into the function so that the variables we call come from our desired dataset. The \$ symbol allows us to pull a variable from the desired dataset.
+
+When researching the functionality of the correlation coefficient in R, we came across the syntax data_frame\$column on the R-bloggers website.
+</p>
+
+# Conclusion
+
+<h2 style="font-weight: bold;">
+
+Summary takeaways
+
+</h2>
+
+<p>
+
+For this specific data frame, we discovered that both relationships between GDP per capita and total vaccinations used by a country or Electoral democracy index and total vaccinations used by a country have weak correlations. Additionally, our original notion that COVID-19 data would be the best for these questions due to its high visibility and online records was quickly overturned. Throughout this process, we realized that because the vaccine was released within 1.5 years, there was less data to track the amount of vaccines used per year. For example, countries such as the United States had a high number of total vaccines used during the first year the vaccine was released, then began to decline, while other countries were beginning to increase their vaccine usage. We realized that real-world data is not linear, globalization makes for well-recorded data, but shorter windows to collect this data, and accounting for this when researching questions would take extensive research and data cleaning.
+
+Due to these factors, we chose to explicitly use data from 2021, one of the first years that the COVID-19 vaccine was rolled out. We did this to get the columns with the most data available. Additionally, we concluded that states with low total vaccinations during this time would have had less access, and this should be highlighted. This means our data exploration contained large underestimations, and using data from one year may not be suited to make any meaningful conclusions. Because of this, we decided to highlight some of the data's features, such as outliers, countries with significantly larger or smaller vaccination rates compared to their EDI group. Additionally, we attempted to test two variables, EDI and GDP per capita, to see if either bore a significant correlation to total vaccinations used.
+
+In the future, we would like to take more time to clean the data in a responsible way that accounts for time, vaccine accessibility, and where the vaccine was developed. We would also like to explore different theories, such as whether state allyship with certain countries has a stronger correlation to total vaccines used. Lastly, we understand that our current understanding of geopolitics is lacking, therefore we would like to collaborate with experts who could guide us through conscious and intentional ways of exploring this data.
+
+</p>
+
+## Author info {height="10%"}
+
+Authors: Melissa Reyes-Ramirez, Sara Sotelo
